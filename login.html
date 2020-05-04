@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script>
+    let isCaptchaDone = false
+    function formProcess(){
+      const id = document.getElementsByName('id')[0].value
+      const pw = document.getElementsByName('pw')[0].value
+      if(id.length<6||id.length>16||!(/^[a-zA-Z0-9_-]+$/.test(id))) {
+        alert('아이디는 6자 이상, 16자 이하의 영문, 숫자, 언더바(_), 하이픈(-)만 사용 가능합니다.')
+        event.preventDefault()
+        return false
+      }
+      if(pw.length<8||pw.length>16||!(/^[a-zA-Z0-9_\-?!@#$%^&]+$/.test(pw))||(/^[a-zA-Z]+$/.test(pw))||(/^[0-9]+$/.test(pw))||(/^[_\-?!@#$%^&]+$/.test(pw))) {
+        alert('비밀번호는 8자 이상, 16자 이하로 영문, 숫자, 특수기호(_-?!@#$%^& 중 택 1)가 모두 포함되어야 합니다. 다른 문자는 사용하실수 없습니다.')
+        event.preventDefault()
+        return false
+      }
+      if(grecaptcha.getResponse().length == 0) {
+        alert('captcha가 완료되지 않았습니다.')
+        event.preventDefault()
+        return false
+      }
+    }
+  </script>
+</head>
+<body>
+  <form action='./login' method="post" autocomplete="off" onsubmit='formProcess()'>
+    <label for="id">id</label>
+    <input type="text" placeholder="Enter Username" name="id" required>
+    <label for="pw">Password</label>
+    <input type="password" placeholder="Enter Password" name="pw" required>
+    <div class="g-recaptcha" data-sitekey="6Lc-afIUAAAAABXYT6WoOgWvkEQ_3IRG0Ssv5trP"></div>
+    <button type='submit'>login</button>
+  </form>
+</body>
+</html>
