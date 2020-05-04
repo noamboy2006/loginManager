@@ -1,2 +1,2 @@
 # loginManager
-just some f**king login manager with mysql... actually mysql practice. LOL
+just some login manager with mysql... actually mysql practice. LOL
