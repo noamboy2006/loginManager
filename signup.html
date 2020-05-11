@@ -1,40 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <script>
-    let isCaptchaDone = false
-    function formProcess(){
-      const id = document.getElementsByName('id')[0].value
-      const pw = document.getElementsByName('pw')[0].value
-      if(id.length<6||id.length>16||!(/^[a-zA-Z0-9_-]+$/.test(id))) {
-        alert('아이디는 6자 이상, 16자 이하의 영문, 숫자, 언더바(_), 하이픈(-)만 사용 가능합니다.')
-        event.preventDefault()
-        return false
-      }
-      if(pw.length<8||pw.length>16||!(/^[a-zA-Z0-9_\-?!@#$%^&]+$/.test(pw))||(/^[a-zA-Z]+$/.test(pw))||(/^[0-9]+$/.test(pw))||(/^[_\-?!@#$%^&]+$/.test(pw))) {
-        alert('비밀번호는 8자 이상, 16자 이하로 영문, 숫자, 특수기호(_-?!@#$%^& 중 택 1)가 모두 포함되어야 합니다. 다른 문자는 사용하실수 없습니다.')
-        event.preventDefault()
-        return false
-      }
-      if(grecaptcha.getResponse().length == 0) {
-        alert('captcha가 완료되지 않았습니다.')
-        event.preventDefault()
-        return false
-      }
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+  let isCaptchaDone = false
+  function formProcess(){
+    const id = document.getElementsByName('id')[0].value
+    const pw = document.getElementsByName('pw')[0].value
+    if(id.length<6||id.length>16||!(/^[a-zA-Z0-9_-]+$/.test(id))) {
+      alert('아이디는 6자 이상, 16자 이하의 영문, 숫자, 언더바(_), 하이픈(-)만 사용 가능합니다.')
+      event.preventDefault()
+      return false
     }
-  </script>
+    if(pw.length<8||pw.length>16||!(/^[a-zA-Z0-9_\-?!@#$%^&]+$/.test(pw))||(/^[a-zA-Z]+$/.test(pw))||(/^[0-9]+$/.test(pw))||(/^[_\-?!@#$%^&]+$/.test(pw))) {
+      alert('비밀번호는 8자 이상, 16자 이하로 영문, 숫자, 특수기호(_-?!@#$%^& 중 택 1)가 모두 포함되어야 합니다. 다른 문자는 사용하실수 없습니다.')
+      event.preventDefault()
+      return false
+    }
+    if(grecaptcha.getResponse().length == 0) {
+      alert('captcha가 완료되지 않았습니다.')
+      event.preventDefault()
+      return false
+    }
+  }
+</script>
+<style>
+  html{
+    height:90%;
+  }
+body {
+  height:100%;
+  font-family: Arial, Helvetica, sans-serif;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+form {
+  width:40%;
+  margin-bottom:100px;
+}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+</style>
 </head>
 <body>
-  <form action='./signup' method="post" autocomplete="off" onsubmit='formProcess()'>
+
+<form action='./signup' method="post" autocomplete="off" onsubmit='formProcess()'>
+  <div class="imgcontainer">
+    <img src="form.jpg" alt="Avatar" class="avatar">
+  </div>
+  <h2>loginManager Sign up</h2>
+  <div class="container">
     <label for="id">id</label>
-    <input type="text" placeholder="Enter Username" name="id" required>
-    <label for="pw">Password</label>
-    <input type="password" placeholder="Enter Password" name="pw" required>
-    <div class="g-recaptcha" data-sitekey="6Lc-afIUAAAAABXYT6WoOgWvkEQ_3IRG0Ssv5trP"></div>
-    <button type='submit'>signup</button>
-  </form>
+  <input type="text" placeholder="Enter Username" name="id" required>
+  <label for="pw">Password</label>
+  <input type="password" placeholder="Enter Password" name="pw" required>
+  <div class="g-recaptcha" data-sitekey="6Lc-afIUAAAAABXYT6WoOgWvkEQ_3IRG0Ssv5trP"></div>
+  <button type='submit'>sign up</button>
+  </div>
+</form>
+
 </body>
 </html>

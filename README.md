@@ -1,2 +1,2 @@
 # loginManager
-just some login manager with sqlite & recaptcha. LOL
+just some login & signup with sqlite & recaptcha. LOL

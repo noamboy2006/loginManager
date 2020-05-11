@@ -1,11 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+  padding-left:0;
+  margin-left:0;
+  padding-right:0;
+  margin-right:0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: cornflowerblue;
+  color:#f1f1f1;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 40%;
+  padding: 0 30px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+  margin: 0 -5px;
+  width:100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 9%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+nav{
+  margin:0;
+  height:10%;
+  margin-bottom:20px;
+  text-align: center;
+}
+
+/* Style the counter cards */
+.card {
+  color:black;
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+    border-radius: 15px;
+    border-bottom: 7px solid grey;
+    border-right: 4px solid grey;
+}
+h3{
+  background: cornflowerblue;
+  width: max-content;
+  display:inline;
+  padding:5px 20px 5px 20px;
+  color: #f1f1f1;
+    border-radius: 15px;
+    border-bottom: 7px solid grey;
+    border-right: 4px solid grey;
+}
+.button {
+    display: inline;
+    text-decoration: none;
+    background: cornflowerblue;
+    border-bottom: 7px solid grey;
+    border-right: 4px solid grey;
+    padding: 10px 30px 10px 30px;
+    text-align: center;
+    border-radius: 15px;
+    color: #f1f1f1;
+    font-weight: bold;
+}
+</style>
 </head>
 <body>
-  <a href="./login.html">login</a><br>
-  <a href="./signup.html">sign up</a>
+
+<nav><h1>loginManager</h1></nav>
+
+<nav>
+  a simple login & signup page.
+</nav>
+
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <h3>login</h3>
+      <p>login to loginManager</p>
+      <p><a href="./login.html" class='button'>click to login</a></p>
+    </div>
+  </div>
+
+    <div class="column">
+      <div class="card">
+        <h3>sign up</h3>
+        <p>sign up to loginManager</p>
+        <p><a href="./signup.html" class='button'>click to sign up</a></p>
+      </div>
+  </div>
+  </div>
+</div>
+
 </body>
 </html>

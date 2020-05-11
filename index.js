@@ -12,7 +12,7 @@ app.use(express.urlencoded())
 app.use(express.json())
 
 app.post('/signup', (req, res) => {
-  const captcha = request('POST', 'https://www.google.com/recaptcha/api/siteverify?secret=' + env.captcha + '&response=' + req.body['g-recaptcha-response'])
+  const captcha = request('POST', encodeURI('https://www.google.com/recaptcha/api/siteverify?secret=' + env.captcha + '&response=' + req.body['g-recaptcha-response']))
   const id = req.body.id
   const pw = req.body.pw
   if (!JSON.parse(captcha.getBody('utf-8')).success) {
@@ -36,7 +36,7 @@ app.post('/signup', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-  const captcha = request('POST', 'https://www.google.com/recaptcha/api/siteverify?secret=' + env.captcha + '&response=' + req.body['g-recaptcha-response'])
+  const captcha = request('POST', encodeURI('https://www.google.com/recaptcha/api/siteverify?secret=' + env.captcha + '&response=' + req.body['g-recaptcha-response']))
   const id = req.body.id
   const pw = req.body.pw
   if (!JSON.parse(captcha.getBody('utf-8')).success) {
